@@ -5,4 +5,6 @@ object Constants {
     const val LOGIN_ENDPOINT = "auth/student/login"
     const val my_details="details/me"
     const val show_attendance="attendence/my-attendence"
+    const val show_internal_marks="marks/my-marks"
+    const val showNotice="notice/my-notice"
 }

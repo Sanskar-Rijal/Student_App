@@ -9,6 +9,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.studentapp.Screens.AttendanceScreen.AttendanceScreenViewModel
 import com.example.studentapp.Screens.AttendanceScreen.ShowAttendance
 import com.example.studentapp.Screens.HomeScreen.HomeScreen
+import com.example.studentapp.Screens.InternalMarksScreen.InternalMarksViewmodel
+import com.example.studentapp.Screens.InternalMarksScreen.ShowInternalMarks
 import com.example.studentapp.Screens.LoginScreen.LoginScreen
 import com.example.studentapp.Screens.LoginScreen.LoginViewmodel
 import kotlin.math.log
@@ -52,6 +54,15 @@ fun CampusConnectNavigation() {
             ShowAttendance(
                 navController = navController,
                 showAttendanceViewmodel = showattendanceViewmodel)
+        }
+
+        composable(CampusConnectScreen.ShowInternalMarksScreen.name) {
+
+            val showInternalMarksViewmodel = hiltViewModel<InternalMarksViewmodel>()
+
+            ShowInternalMarks(
+                navController = navController,
+                showInternalMarksviewmodel = showInternalMarksViewmodel)
         }
 
 
