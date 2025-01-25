@@ -1,7 +1,7 @@
 package com.example.studentapp.model.getMydetails
 
 data class Data(
-    val email: String,
+    var email: String,
     val faculty: String,
     val id: String,
     val name: String,

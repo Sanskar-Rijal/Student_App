@@ -60,7 +60,7 @@ fun ShowInternalMarks(navController: NavController= NavController(LocalContext.c
     Scaffold(
         topBar = {
             AppBarbySans(
-                title = "Show Attendance",
+                title = "Internal Marks",
                 icon = Icons.AutoMirrored.Filled.ArrowBack
             ) {
                 navController.popBackStack()

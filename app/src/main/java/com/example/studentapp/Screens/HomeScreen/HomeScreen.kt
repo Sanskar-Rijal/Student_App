@@ -1,5 +1,6 @@
 package com.example.studentapp.Screens.HomeScreen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -48,6 +49,7 @@ import com.example.studentapp.R
 import com.example.studentapp.Screens.LoginScreen.LoginViewmodel
 import com.example.studentapp.model.getMydetails.MydetailsResponse
 import com.example.studentapp.navigation.CampusConnectScreen
+import com.example.studentapp.utils.getRollno
 
 @Composable
 fun HomeScreen(navController: NavController= NavController(LocalContext.current),
@@ -71,7 +73,7 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
             modifier = Modifier
                 .padding(contentpadding)
                 .fillMaxSize(),
-            color = Color(0xFF1490CF)
+            color = Color(0xFF35474F)
         ) {
 
             Column {
@@ -86,40 +88,37 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
                         imageVector = Icons.Rounded.AccountCircle,
                         modifier = Modifier.size(80.dp),
                         contentDescription = "User Icons",
-                        tint = Color.Black.copy(0.5f)
+                        tint = Color.White.copy(0.5f)
                     )
 
-                    Column(modifier = Modifier.padding(10.dp)) {
+                    Column(modifier = Modifier
+                        .padding(10.dp)
+                        .weight(1f) // Take the remaining space in the Row
+                    ) {
                         Text(
                             text = "Welcome !",
                             style = MaterialTheme.typography.labelMedium,
                             fontSize = 30.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.Black.copy(0.8f)
+                            color = Color(0xFF1490CF).copy(0.7f)
                         )
-                        Text(
-                            text = details.data.name?:"No Name",
-                            modifier = Modifier.padding(top = 10.dp),
-                            style = MaterialTheme.typography.bodySmall,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Black.copy(0.8f)
-                        )
+                            Text(
+                                text = details.data.name ?: "No Name",
+                                modifier = Modifier.padding(top = 10.dp),
+                                fontSize = 23.sp,
+                                color = Color.White
+                            )
+                            Text(
+                                text = "(${details.data.email?:"no data"})",
+                                modifier = Modifier.padding(top = 5.dp),
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
                     }
                     Spacer(modifier = Modifier.height(20.dp))
 
-//                    IconButton(modifier = Modifier.padding(start = 30.dp, top = 15.dp),
-//                        onClick = {
-//                            loginViewmodel.logoutTeacher()
-//                            navController.navigate(CampusConnectScreen.LoginScreen.name)
-//
-//                        },) {
-//                        Icon(
-//                            imageVector = Icons.AutoMirrored.Filled.Logout,
-//                            contentDescription = "LogOut",
-//                            tint = Color.Black.copy(alpha = 0.4f))
-//                    }
-                    IconButton(modifier = Modifier.padding(start = 30.dp, top = 15.dp),
+                    IconButton(modifier = Modifier.padding(top = 15.dp),
                         onClick = {
                             navController.navigate(CampusConnectScreen.ShowNoticesScreen.name)
 
@@ -128,12 +127,12 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
                             modifier = Modifier.size(30.dp),
                             imageVector = Icons.Default.Notifications,
                             contentDescription = "Notification Icon",
-                            tint = Color.Black.copy(alpha = 0.4f))
+                            tint = Color.White)
                     }
 
 
                 }
-                Spacer(modifier = Modifier.height(50.dp))
+               Spacer(modifier = Modifier.height(30.dp))
                 BackgroundCardView(navController)
             }
         }

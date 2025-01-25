@@ -1,4 +1,4 @@
-package com.example.studentapp.Screens.AttendanceScreen
+package com.example.studentapp.Screens.NoteScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -16,14 +16,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.PictureAsPdf
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,11 +34,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -43,23 +44,27 @@ import com.example.studentapp.R
 import com.example.studentapp.Screens.LoginScreen.LoadingState
 import com.example.studentapp.components.AppBarbySans
 import com.example.studentapp.components.LoadingDialog
-import com.example.studentapp.model.ShowAttendance.AttendanceSummary
-import com.example.studentapp.model.ShowAttendance.ShowAttendanceResponse
-
+import com.example.studentapp.model.Notices.NoticeResponse
+import com.example.studentapp.model.getNote.Note
+import com.example.studentapp.model.getNote.ShowNoteResponse
+import com.example.studentapp.utils.downloadFile
 
 @Composable
-fun ShowAttendance(navController: NavController= NavController(LocalContext.current),
-                   showAttendanceViewmodel:AttendanceScreenViewModel){
+fun showNote(navController: NavController = NavController(LocalContext.current),
+             shownoteviewmodel: NoteScreenViewmodel
+){
 
-    val data: ShowAttendanceResponse = showAttendanceViewmodel.item
+    val data:ShowNoteResponse = shownoteviewmodel.item
 
-    val uiState = showAttendanceViewmodel.state.collectAsState()
+    val context= LocalContext.current
+
+    val uiState = shownoteviewmodel.state.collectAsState()
 
 
     Scaffold(
         topBar = {
             AppBarbySans(
-                title = "Attendance",
+                title = "Notice",
                 icon = Icons.AutoMirrored.Filled.ArrowBack
             ) {
                 navController.popBackStack()
@@ -89,8 +94,10 @@ fun ShowAttendance(navController: NavController= NavController(LocalContext.curr
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {
-                            items(data.attendanceSummary){ list->
-                                Showatt(data=list)
+                            items(data.notes){ list->
+                                ShowPdf(list){
+                                    downloadFile(context = context, fileUrl = it)
+                                }
                             }
                         }
                     }
@@ -102,13 +109,11 @@ fun ShowAttendance(navController: NavController= NavController(LocalContext.curr
 
 
 @Composable
-fun Showatt(
-    data:AttendanceSummary,
-    size:Int=50,
-    title:String="sans",
+fun ShowPdf(
+    data:Note,
+    onClick:(String)->Unit
 ){
     Card(modifier = Modifier
-        .height(79.dp)
         .fillMaxWidth()
         .padding(5.dp),
         shape = RoundedCornerShape(10.dp),
@@ -116,13 +121,13 @@ fun Showatt(
         colors = CardDefaults.cardColors(containerColor = Color.White),
     ){
         Row(modifier = Modifier
-            .padding(10.dp)
+            .padding(20.dp)
             .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween){
-            Column {
+            horizontalArrangement = Arrangement.SpaceBetween) {
+            Column(modifier = Modifier.padding(5.dp)) {
                 Text(
-                    text = data.subject?:"no data",
+                    text = data.title ?: "No name",
                     modifier = Modifier.padding(bottom = 5.dp),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.ExtraBold,
@@ -132,35 +137,21 @@ fun Showatt(
                     letterSpacing = 0.5.sp
                 )
 
+                Text(
+                    text = "${data.teacherName?:"No name"},subject-${data.subjectName?:"No name"}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Gray.copy(0.7f),
+                    textAlign = TextAlign.Center,
+                    lineHeight = 23.sp,
+                    letterSpacing = 0.5.sp
+                )
             }
-            Text(
-                text = buildAnnotatedString {
-                    withStyle(
-                        style = SpanStyle(
-                            color = Color(0xFF1490CF), // Red color for total classes attended
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 23.sp
-                        )
-                    ) {
-                        append(data.attendedClasses?.toString() ?: "no data")
-                    }
-                    append("/") // Separator
-                    withStyle(
-                        style = SpanStyle(
-                            color = Color.Gray, // Gray color for total classes conducted
-                            fontWeight = FontWeight.Normal,
-                            fontSize = 16.sp
-                        )
-                    ) {
-                        append(data.totalClasses?.toString() ?: "no data")
-                    }
-                },
-                style = MaterialTheme.typography.titleMedium,
-                textAlign = TextAlign.Center,
-                lineHeight = 23.sp
-            )
-
-
+            IconButton(onClick = {
+                onClick(data.fileUrl)
+            }) {
+                Icon(imageVector = Icons.Default.Download,
+                    contentDescription = "pdf", tint = Color.Black.copy(alpha = 0.4f))
+            }
         }
     }
 }

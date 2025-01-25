@@ -1,5 +1,6 @@
 package com.example.studentapp.Screens.HomeScreen
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -11,6 +12,7 @@ import com.example.studentapp.data.DataorException
 import com.example.studentapp.model.getMydetails.Data
 import com.example.studentapp.model.getMydetails.MydetailsResponse
 import com.example.studentapp.repository.getmyDetails_Repository
+import com.example.studentapp.utils.getRollno
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -58,11 +60,20 @@ class HomeScreenViewModel @Inject constructor(
                 when(response){
 
                     is DataorException.Success ->{
+                      val email=  response.data?.data?.email?.let {
+                            getRollno(it)
+                        }
+                        response.data?.data?.email = email!!
                         item= response.data!!
+                        Log.d("ramesh", "${item} ")
                         if(item.success == true){
                             _state.value = LoadingState.SUCCESS
-                            cache.saveUserDetails(name=item.data.name, email = item.data.email)
+                            Log.d("Ramesh", "${getRollno(item.data.email)} ")
+                            cache.saveUserDetails(
+                                name=item.data.name,
+                                email = item.data.email)
                         }
+                        Log.d("ramesh from try ", "${cache}")
                     }
                     is DataorException.Error ->{
                         _state.value = LoadingState.FAILED
@@ -84,7 +95,9 @@ class HomeScreenViewModel @Inject constructor(
             val cachedName =cache.userName.first()
             val cachedEmail= cache.userEmail.first()
 
-            if(cachedName.isNullOrEmpty()&& cachedEmail.isNullOrEmpty()){
+            Log.d("ramesh", "cached email: $cachedEmail ")
+
+            if(cachedName.isNullOrEmpty() && cachedEmail.isNullOrEmpty()){
                 getDetails()
             }else{
                 item = MydetailsResponse(data = Data(name = cachedName!!,

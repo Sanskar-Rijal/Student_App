@@ -1,8 +1,10 @@
 package com.example.studentapp.network
 
+import com.example.studentapp.model.Notices.NoticeResponse
 import com.example.studentapp.model.ShowAttendance.ShowAttendanceResponse
 import com.example.studentapp.model.ShowInternalMarks.ShowInternalMarksResponse
 import com.example.studentapp.model.getMydetails.MydetailsResponse
+import com.example.studentapp.model.getNote.ShowNoteResponse
 import com.example.studentapp.model.login.LoginRequest
 import com.example.studentapp.model.login.LoginResponse
 import com.example.studentapp.utils.Constants
@@ -30,5 +32,13 @@ interface network {
     // show internal marks
     @GET(value = Constants.show_internal_marks)
     suspend fun showInternalMarks():ShowInternalMarksResponse
+
+    //show Notices
+    @GET(value = Constants.showNotice)
+    suspend fun showNotice():NoticeResponse
+
+    //show Notes
+    @GET(value = Constants.downloadnote)
+    suspend fun showNotes():ShowNoteResponse
 
 }

@@ -13,6 +13,10 @@ import com.example.studentapp.Screens.InternalMarksScreen.InternalMarksViewmodel
 import com.example.studentapp.Screens.InternalMarksScreen.ShowInternalMarks
 import com.example.studentapp.Screens.LoginScreen.LoginScreen
 import com.example.studentapp.Screens.LoginScreen.LoginViewmodel
+import com.example.studentapp.Screens.NoteScreen.NoteScreenViewmodel
+import com.example.studentapp.Screens.NoteScreen.showNote
+import com.example.studentapp.Screens.NoticeScreen.NoticeScreenViewmodel
+import com.example.studentapp.Screens.NoticeScreen.ShowNotices
 import kotlin.math.log
 
 @Composable
@@ -65,6 +69,24 @@ fun CampusConnectNavigation() {
                 showInternalMarksviewmodel = showInternalMarksViewmodel)
         }
 
+        composable(CampusConnectScreen.ShowNoticesScreen.name) {
+
+            val shownoticeViewmodel = hiltViewModel<NoticeScreenViewmodel>()
+
+            ShowNotices(
+                navController = navController,
+                showNotice = shownoticeViewmodel)
+        }
+
+        composable(CampusConnectScreen.ShowNotesScreen.name){
+            val showNoteViewmodel = hiltViewModel<NoteScreenViewmodel>()
+
+            showNote(
+                navController=navController,
+                shownoteviewmodel = showNoteViewmodel
+            )
+
+        }
 
 
     }
