@@ -30,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -64,7 +65,7 @@ fun showNote(navController: NavController = NavController(LocalContext.current),
     Scaffold(
         topBar = {
             AppBarbySans(
-                title = "Notice",
+                title = "Notes",
                 icon = Icons.AutoMirrored.Filled.ArrowBack
             ) {
                 navController.popBackStack()
@@ -115,9 +116,12 @@ fun ShowPdf(
 ){
     Card(modifier = Modifier
         .fillMaxWidth()
-        .padding(5.dp),
-        shape = RoundedCornerShape(10.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
+        .padding(10.dp)
+        .clip(
+            RoundedCornerShape(
+                topEnd = 33.dp,
+                bottomStart = 33.dp)),
+       // elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
     ){
         Row(modifier = Modifier

@@ -1,7 +1,7 @@
 package com.example.studentapp.utils
 
 object Constants {
-    const val BASE_URL = "https://sangyog-cc.vercel.app/api/v1/"
+    const val BASE_URL = "https://campus-connect-dag0d0dzfphceser.centralindia-01.azurewebsites.net/api/v1/"
     const val LOGIN_ENDPOINT = "auth/student/login"
     const val my_details="details/me"
     const val show_attendance="attendence/my-attendence"

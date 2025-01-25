@@ -39,6 +39,7 @@ import com.example.studentapp.Screens.AttendanceScreen.Showatt
 import com.example.studentapp.Screens.LoginScreen.LoadingState
 import com.example.studentapp.components.AppBarbySans
 import com.example.studentapp.components.LoadingDialog
+import com.example.studentapp.components.NoticeRow
 import com.example.studentapp.model.Notices.Notice
 import com.example.studentapp.model.Notices.NoticeResponse
 
@@ -97,51 +98,3 @@ fun ShowNotices(navController: NavController = NavController(LocalContext.curren
 }
 
 
-@Composable
-fun NoticeRow(
-    data:Notice){
-
-    Card (modifier = Modifier
-        .padding(7.dp)
-        .clip(
-            RoundedCornerShape(
-            topEnd = 33.dp,
-            bottomStart = 33.dp)
-        )
-        .fillMaxWidth(),
-        colors =CardDefaults.cardColors(containerColor = Color.White)
-    ) {
-
-        Column(modifier=Modifier
-            .padding(horizontal = 14.dp, vertical = 6.dp),
-            horizontalAlignment = Alignment.Start) {
-
-            Text(text = data.title?:"No title",
-                modifier=Modifier.padding(bottom = 5.dp),
-                color = MaterialTheme.colorScheme.onBackground,
-                style = TextStyle(
-                    fontStyle = FontStyle.Normal,
-                    fontSize = 25.sp
-                )
-            )
-            Text(text=data.description?:"No description" ,
-                color = MaterialTheme.colorScheme.onBackground,
-                style = TextStyle(
-                    fontStyle = FontStyle.Normal,
-                    fontSize = 15.sp
-                )
-            )
-            Box(modifier = Modifier
-                .padding(4.dp)
-                .fillMaxWidth()
-                , contentAlignment = Alignment.TopEnd)
-            {
-                Text(
-                    text =" ${data.teacher?:"no data"},subject-${data.subject?:"no data"}",
-                    style = MaterialTheme.typography.bodySmall
-                    //color = Color.Black
-                )
-            }
-        }
-    }
-}
