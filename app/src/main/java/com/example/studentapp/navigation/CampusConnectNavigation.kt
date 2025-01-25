@@ -6,6 +6,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.studentapp.Screens.AttendanceScreen.AttendanceScreenViewModel
+import com.example.studentapp.Screens.AttendanceScreen.ShowAttendance
 import com.example.studentapp.Screens.HomeScreen.HomeScreen
 import com.example.studentapp.Screens.LoginScreen.LoginScreen
 import com.example.studentapp.Screens.LoginScreen.LoginViewmodel
@@ -41,6 +43,15 @@ fun CampusConnectNavigation() {
                 loginViewmodel =  loginviewmodel,
                 homeScreenViewModel = hiltViewModel()
             )
+        }
+
+        composable(CampusConnectScreen.ShowAttendanceScreen.name) {
+
+            val showattendanceViewmodel = hiltViewModel<AttendanceScreenViewModel>()
+
+            ShowAttendance(
+                navController = navController,
+                showAttendanceViewmodel = showattendanceViewmodel)
         }
 
 

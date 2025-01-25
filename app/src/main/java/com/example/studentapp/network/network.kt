@@ -1,5 +1,6 @@
 package com.example.studentapp.network
 
+import com.example.studentapp.model.ShowAttendance.ShowAttendanceResponse
 import com.example.studentapp.model.getMydetails.MydetailsResponse
 import com.example.studentapp.model.login.LoginRequest
 import com.example.studentapp.model.login.LoginResponse
@@ -21,5 +22,8 @@ interface network {
     @GET(value=Constants.my_details)
     suspend fun getmyDetails(): MydetailsResponse
 
+    // show attendance response
+    @GET(value = Constants.show_attendance)
+    suspend fun showAttendance(): ShowAttendanceResponse
 
 }
