@@ -118,17 +118,17 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
                     }
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    IconButton(modifier = Modifier.padding(top = 15.dp),
-                        onClick = {
-                            navController.navigate(CampusConnectScreen.ShowNoticesScreen.name)
-
-                        },) {
-                        Icon(
-                            modifier = Modifier.size(30.dp),
-                            imageVector = Icons.Default.Notifications,
-                            contentDescription = "Notification Icon",
-                            tint = Color.White)
-                    }
+//                    IconButton(modifier = Modifier.padding(top = 15.dp),
+//                        onClick = {
+//                            navController.navigate(CampusConnectScreen.ShowNoticesScreen.name)
+//
+//                        },) {
+//                        Icon(
+//                            modifier = Modifier.size(30.dp),
+//                            imageVector = Icons.Default.Notifications,
+//                            contentDescription = "Notification Icon",
+//                            tint = Color.White)
+//                    }
 
 
                 }
@@ -245,10 +245,10 @@ fun BackgroundCardView(navController: NavController) {
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement =Arrangement.Absolute.SpaceEvenly) {
 
-//                    CardView( title = "Notice",
-//                        icon = painterResource(id = R.drawable.notice_icon)){
-//                        navController.navigate(campusConnectScreen.NoticeHomeScreen.name)
-//                    }
+                    CardView( title = "Notice",
+                        icon = painterResource(id = R.drawable.notice_icon)){
+                        navController.navigate(CampusConnectScreen.ShowNoticesScreen.name)
+                    }
 
                     CardView(
                         title = "Internal Marks",
