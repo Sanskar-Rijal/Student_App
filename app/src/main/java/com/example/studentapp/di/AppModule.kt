@@ -1,6 +1,7 @@
 package com.example.studentapp.di
 
 import android.content.Context
+import com.example.studentapp.caching.DataStoreManager
 import com.example.studentapp.cookies.AppCookieJar
 import com.example.studentapp.network.network
 import com.example.studentapp.utils.Constants
@@ -47,5 +48,11 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(network::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataStoreManager(@ApplicationContext context: Context): DataStoreManager {
+        return DataStoreManager(context)
     }
 }

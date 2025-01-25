@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.studentapp.Screens.HomeScreen.HomeScreen
 import com.example.studentapp.Screens.LoginScreen.LoginScreen
 import com.example.studentapp.Screens.LoginScreen.LoginViewmodel
+import kotlin.math.log
 
 @Composable
 fun CampusConnectNavigation() {
@@ -35,7 +36,11 @@ fun CampusConnectNavigation() {
         }
 
         composable(CampusConnectScreen.HomeScreen.name) {
-            HomeScreen()
+            HomeScreen(
+                navController = navController,
+                loginViewmodel =  loginviewmodel,
+                homeScreenViewModel = hiltViewModel()
+            )
         }
 
 

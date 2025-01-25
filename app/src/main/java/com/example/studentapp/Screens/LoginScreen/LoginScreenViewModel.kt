@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.studentapp.caching.DataStoreManager
 import com.example.studentapp.data.DataorException
 import com.example.studentapp.model.login.LoginResponse
 import com.example.studentapp.repository.LoginRepository
@@ -16,7 +17,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewmodel @Inject constructor(private val repository: LoginRepository): ViewModel() {
+class LoginViewmodel @Inject constructor(private val repository: LoginRepository,
+                                         private val cache: DataStoreManager
+): ViewModel() {
 
     var item: LoginResponse by mutableStateOf(LoginResponse(success =false  , message = ""))
     var isLoading:Boolean by mutableStateOf(false)
@@ -81,6 +84,9 @@ class LoginViewmodel @Inject constructor(private val repository: LoginRepository
     }
 
     fun logoutTeacher() {
+        viewModelScope.launch {
             repository.logoutTeacher()
+            cache.clearUserDetails()
+        }
     }
 }
