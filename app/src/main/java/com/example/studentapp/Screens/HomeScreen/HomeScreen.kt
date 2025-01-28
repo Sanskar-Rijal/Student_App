@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,8 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,7 +25,6 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -47,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.studentapp.R
 import com.example.studentapp.Screens.LoginScreen.LoginViewmodel
+import com.example.studentapp.components.BottomBar
 import com.example.studentapp.model.getMydetails.MydetailsResponse
 import com.example.studentapp.navigation.CampusConnectScreen
 import com.example.studentapp.utils.getRollno
@@ -61,13 +60,9 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
 
     val uiState = homeScreenViewModel.state.collectAsState()
 
-    Scaffold(
-        floatingActionButton = {FloatingContent {
-                loginViewmodel.logoutTeacher()
-                navController.navigate(CampusConnectScreen.LoginScreen.name)
-            }
-        }
-    ) { contentpadding ->
+    Scaffold(bottomBar = {
+        BottomBar(navController = navController)
+    }) { contentpadding ->
 
         Surface(
             modifier = Modifier
@@ -86,7 +81,9 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
 
                     Icon(
                         imageVector = Icons.Rounded.AccountCircle,
-                        modifier = Modifier.size(80.dp),
+                        modifier = Modifier
+                            .absolutePadding(top = 10.dp)
+                            .size(80.dp),
                         contentDescription = "User Icons",
                         tint = Color.White.copy(0.5f)
                     )
@@ -102,19 +99,19 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFF1490CF).copy(0.7f)
                         )
-                            Text(
-                                text = details.data.name ?: "No Name",
-                                modifier = Modifier.padding(top = 10.dp),
-                                fontSize = 23.sp,
-                                color = Color.White
-                            )
-                            Text(
-                                text = "(${details.data.email?:"no data"})",
-                                modifier = Modifier.padding(top = 5.dp),
-                                style = MaterialTheme.typography.bodyMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White
-                            )
+                        Text(
+                            text = details.data.name ?: "No Name",
+                            modifier = Modifier.padding(top = 10.dp),
+                            fontSize = 23.sp,
+                            color = Color.White
+                        )
+                        Text(
+                            text = "(${details.data.email?:"no data"})",
+                            modifier = Modifier.padding(top = 5.dp),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
                     }
                     Spacer(modifier = Modifier.height(20.dp))
 
@@ -129,30 +126,39 @@ fun HomeScreen(navController: NavController= NavController(LocalContext.current)
 //                            contentDescription = "Notification Icon",
 //                            tint = Color.White)
 //                    }
+                    IconButton(modifier = Modifier.padding(start = 30.dp, top = 15.dp),
+                        onClick = {
+                            loginViewmodel.logoutTeacher()
+                            navController.navigate(CampusConnectScreen.LoginScreen.name)}) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Logout,
+                            contentDescription = "LogOut",
+                            tint = Color.White.copy(0.7f))
+                    }
 
 
                 }
-               Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(30.dp))
                 BackgroundCardView(navController)
             }
         }
     }
 }
 
-@Composable
-fun FloatingContent(onClick:(String)->Unit ){
-    FloatingActionButton(onClick={
-        onClick("")
-    },
-        shape = RoundedCornerShape(45.dp),
-        containerColor = MaterialTheme.colorScheme.tertiaryContainer,) {
-
-        Icon(
-            imageVector = Icons.AutoMirrored.Filled.Logout,
-            contentDescription = "LogOut",
-            tint = Color.Black.copy(alpha = 0.4f))
-    }
-}
+//@Composable
+//fun FloatingContent(onClick:(String)->Unit ){
+//    FloatingActionButton(onClick={
+//        onClick("")
+//    },
+//        shape = RoundedCornerShape(45.dp),
+//        containerColor = MaterialTheme.colorScheme.tertiaryContainer,) {
+//
+//        Icon(
+//            imageVector = Icons.AutoMirrored.Filled.Logout,
+//            contentDescription = "LogOut",
+//            tint = Color.Black.copy(alpha = 0.4f))
+//    }
+//}
 
 
 

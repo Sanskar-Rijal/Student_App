@@ -6,5 +6,6 @@ enum class CampusConnectScreen {
     ShowAttendanceScreen,
     ShowInternalMarksScreen,
     ShowNoticesScreen,
-    ShowNotesScreen
+    ShowNotesScreen,
+    AboutScreen
 }
