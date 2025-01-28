@@ -43,6 +43,7 @@ import com.example.studentapp.R
 import com.example.studentapp.Screens.LoginScreen.LoadingState
 import com.example.studentapp.components.AppBarbySans
 import com.example.studentapp.components.LoadingDialog
+import com.example.studentapp.components.ShowFailedText
 import com.example.studentapp.model.ShowAttendance.AttendanceSummary
 import com.example.studentapp.model.ShowAttendance.ShowAttendanceResponse
 
@@ -85,7 +86,8 @@ fun ShowAttendance(navController: NavController= NavController(LocalContext.curr
 
                     if (uiState.value == LoadingState.LOADING) {
                         LoadingDialog()
-                    } else {
+                    }
+                    else {
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {

@@ -1,5 +1,6 @@
 package com.example.studentapp.Screens.NoticeScreen
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.combinedClickable
@@ -34,6 +35,7 @@ import com.example.studentapp.components.AppBarbySans
 import com.example.studentapp.components.BottomBar
 import com.example.studentapp.components.LoadingDialog
 import com.example.studentapp.components.NoticeRow
+import com.example.studentapp.components.ShowFailedText
 import com.example.studentapp.model.Notices.NoticeResponse
 
 
@@ -78,7 +80,8 @@ fun ShowNotices(navController: NavController = NavController(LocalContext.curren
 
                     if (uiState.value == LoadingState.LOADING) {
                         LoadingDialog()
-                    } else {
+                    }
+                    else {
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {
@@ -87,6 +90,7 @@ fun ShowNotices(navController: NavController = NavController(LocalContext.curren
                             }
                         }
                     }
+                    Log.d("Doraemon", "${uiState.value}: ")
                 }
             }
         }

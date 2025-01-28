@@ -43,6 +43,7 @@ import com.example.studentapp.R
 import com.example.studentapp.Screens.LoginScreen.LoadingState
 import com.example.studentapp.components.AppBarbySans
 import com.example.studentapp.components.LoadingDialog
+import com.example.studentapp.components.ShowFailedText
 import com.example.studentapp.model.ShowInternalMarks.Data
 import com.example.studentapp.model.ShowInternalMarks.ShowInternalMarksResponse
 
@@ -86,7 +87,14 @@ fun ShowInternalMarks(navController: NavController= NavController(LocalContext.c
 
                     if (uiState.value == LoadingState.LOADING) {
                         LoadingDialog()
-                    } else {
+                    }else if(uiState.value == LoadingState.FAILED){
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center) {
+                            ShowFailedText()
+                        }
+                    }
+                    else {
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {
