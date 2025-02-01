@@ -251,9 +251,10 @@ fun BackgroundCardView(navController: NavController) {
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement =Arrangement.Absolute.SpaceEvenly) {
 
-                    CardView( title = "Notice",
+                    CardView( title = "Show Teachers",
+                        size = 40,
                         icon = painterResource(id = R.drawable.notice_icon)){
-                        navController.navigate(CampusConnectScreen.ShowNoticesScreen.name)
+                        navController.navigate(CampusConnectScreen.ShowTeacherScreen.name)
                     }
 
                     CardView(

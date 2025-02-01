@@ -17,6 +17,7 @@ import com.example.studentapp.Screens.NoteScreen.NoteScreenViewmodel
 import com.example.studentapp.Screens.NoteScreen.showNote
 import com.example.studentapp.Screens.NoticeScreen.NoticeScreenViewmodel
 import com.example.studentapp.Screens.NoticeScreen.ShowNotices
+import com.example.studentapp.Screens.ShowTeacher.ShowTeacher
 import kotlin.math.log
 
 @Composable
@@ -87,6 +88,10 @@ fun CampusConnectNavigation() {
                 shownoteviewmodel = showNoteViewmodel
             )
 
+        }
+
+        composable(CampusConnectScreen.ShowTeacherScreen.name){
+            ShowTeacher(navController)
         }
 
 
