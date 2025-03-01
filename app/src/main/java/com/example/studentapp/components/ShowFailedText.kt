@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ShowFailedText(){
     Text(
-        text = "No subjects available at the moment.",
+        text = "Nothing available at the moment.",
         style = MaterialTheme.typography.bodyLarge,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(16.dp)

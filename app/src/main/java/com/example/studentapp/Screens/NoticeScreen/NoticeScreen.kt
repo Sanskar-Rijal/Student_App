@@ -82,6 +82,13 @@ fun ShowNotices(navController: NavController = NavController(LocalContext.curren
                         LoadingDialog()
                     }
                     else {
+                        if(data.notices.isEmpty()){
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center) {
+                                ShowFailedText()
+                            }
+                        }
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {

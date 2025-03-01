@@ -49,7 +49,7 @@ import com.example.studentapp.components.ShowFailedText
 import com.example.studentapp.model.Notices.NoticeResponse
 import com.example.studentapp.model.getNote.Note
 import com.example.studentapp.model.getNote.ShowNoteResponse
-import com.example.studentapp.utils.downloadFile
+import downloadFile
 
 @Composable
 fun showNote(navController: NavController = NavController(LocalContext.current),
@@ -94,6 +94,13 @@ fun showNote(navController: NavController = NavController(LocalContext.current),
                         LoadingDialog()
                     }
                     else {
+                        if(data.notes.isEmpty()){
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center) {
+                                ShowFailedText()
+                            }
+                        }
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {

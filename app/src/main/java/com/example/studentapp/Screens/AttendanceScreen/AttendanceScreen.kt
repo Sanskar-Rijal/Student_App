@@ -88,6 +88,13 @@ fun ShowAttendance(navController: NavController= NavController(LocalContext.curr
                         LoadingDialog()
                     }
                     else {
+                        if(data.attendanceSummary.isEmpty()){
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center) {
+                                ShowFailedText()
+                            }
+                        }
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {

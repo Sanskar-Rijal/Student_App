@@ -1,5 +1,6 @@
 package com.example.studentapp.Screens.InternalMarksScreen
 
+import android.util.Log
 import com.example.studentapp.Screens.AttendanceScreen.AttendanceScreenViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -46,6 +47,7 @@ import com.example.studentapp.components.LoadingDialog
 import com.example.studentapp.components.ShowFailedText
 import com.example.studentapp.model.ShowInternalMarks.Data
 import com.example.studentapp.model.ShowInternalMarks.ShowInternalMarksResponse
+import kotlin.math.log
 
 
 @Composable
@@ -56,8 +58,6 @@ fun ShowInternalMarks(navController: NavController= NavController(LocalContext.c
     val data: ShowInternalMarksResponse = showInternalMarksviewmodel.item
 
     val uiState = showInternalMarksviewmodel.state.collectAsState()
-
-
     Scaffold(
         topBar = {
             AppBarbySans(
@@ -95,6 +95,13 @@ fun ShowInternalMarks(navController: NavController= NavController(LocalContext.c
                         }
                     }
                     else {
+                        if(data.data.isEmpty()){
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center) {
+                                ShowFailedText()
+                            }
+                        }
                         LazyColumn(
                             contentPadding = PaddingValues(10.dp)
                         ) {
