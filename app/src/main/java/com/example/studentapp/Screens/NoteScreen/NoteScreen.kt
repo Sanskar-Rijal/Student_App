@@ -1,5 +1,7 @@
 package com.example.studentapp.Screens.NoteScreen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -51,6 +54,7 @@ import com.example.studentapp.model.getNote.Note
 import com.example.studentapp.model.getNote.ShowNoteResponse
 import downloadFile
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun showNote(navController: NavController = NavController(LocalContext.current),
              shownoteviewmodel: NoteScreenViewmodel
@@ -138,7 +142,11 @@ fun ShowPdf(
             .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween) {
-            Column(modifier = Modifier.padding(5.dp)) {
+            Column(modifier = Modifier
+                .padding(5.dp)
+                .weight(1f)
+            ) {
+
                 Text(
                     text = data.title ?: "No name",
                     modifier = Modifier.padding(bottom = 5.dp),
@@ -161,7 +169,8 @@ fun ShowPdf(
             }
             IconButton(onClick = {
                 onClick(data.fileUrl)
-            }) {
+            },
+                modifier = Modifier.wrapContentSize()) {
                 Icon(imageVector = Icons.Default.Download,
                     contentDescription = "pdf", tint = Color.Black.copy(alpha = 0.4f))
             }
