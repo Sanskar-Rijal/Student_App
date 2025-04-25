@@ -1,83 +1,86 @@
-# 📚 **Student App**  
+# Student App
 
-The **Student App** is designed to provide students with easy access to their academic information, including attendance, internal marks, notices, study materials (notes), and teacher details. This app ensures seamless communication between students and teachers while offering an intuitive and efficient user experience.  
-
----
-
-## 🚀 **Features**  
-
-### ✅ **View Attendance**  
-- Students can check their attendance records for each subject.  
-- Data is organized by semester and subject for easy tracking.  
-
-### 📊 **Internal Marks**  
-- View internal assessment marks assigned by teachers.  
-- Helps students stay updated on their academic progress.  
-
-### 📢 **Notices & Announcements**  
-- Receive important college and faculty-related notices directly in the app.  
-- Ensures students never miss crucial updates.  
-
-### 📚 **Study Materials (Notes)**  
-- Access and download study materials uploaded by teachers.  
-- Notes are provided in **PDF format** for convenient offline access.  
-
-### 👨‍🏫 **Teacher Information**  
-- View a list of teachers in the college, including their details.  
-- Helps students easily identify and connect with faculty members.  
+The **Student App** is an Android application developed to provide students of IOE Purwanchal Campus with a seamless platform to view academic information such as attendance, internal marks, study materials, announcements, and teacher details. It is designed to improve communication and transparency between students and faculty.
 
 ---
 
-## 🛠 **Tech Stack & Architecture**  
+## Features
 
-### 🎯 **Frontend**  
-- **Language**: Kotlin  
-- **Framework**: Jetpack Compose  
-- **Architecture**: MVVM (Model-View-ViewModel)  
+### 1. View Attendance
+- Allows students to track their attendance records for each subject.
+- Data is structured by semester and subject for clarity and convenience.
 
-### 💾 **Storage & State Management**  
-- **Cache Memory**: Stores the username for quick access.  
-- **Cookie Jar**: Manages backend authentication cookies.  
+### 2. Internal Marks
+- Students can view the internal assessment marks assigned by their teachers.
+- Promotes academic awareness and self-monitoring.
 
-### 🔗 **Backend**  
-- **Language**: Node.js with Express.js  
-- **Database**: PostgreSQL  
-- **Architecture**: Monolithic  
+### 3. Notices and Announcements
+- Displays important notices and announcements from the college and respective faculties.
+- Ensures students remain up-to-date with academic and administrative updates.
+
+### 4. Study Materials (Notes)
+- Enables students to access and download notes uploaded by teachers.
+- Notes are provided in PDF format for offline viewing.
+
+### 5. Teacher Information
+- Shows a list of teachers with their respective details.
+- Helps students easily identify and connect with their instructors.
 
 ---
 
-## 📂 **Installation & Setup**  
+## Tech Stack & Architecture
 
-### **Prerequisites**  
-- Android Studio installed  
-- A device/emulator running Android 7.0+  
+- **Frontend:** Kotlin with Jetpack Compose
+- **Architecture Pattern:** MVVM (Model-View-ViewModel)
+- **State Management:** LiveData and StateFlow
+- **Data Storage:**
+  - Cache memory for storing the username
+  - CookieJar for handling backend session cookies
 
-### **Steps to Run the Project**  
-1. **Clone the Repository**  
-   ```sh
+### Backend
+- **Language & Framework:** Node.js with Express.js
+- **Database:** PostgreSQL
+- **Architecture:** Monolithic  
+- Backend Repository: [Campus Connect – Backend](https://github.com/Sangyog10/Campus-connect)
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+- Android Studio installed
+- Android device or emulator running Android 7.0 or higher
+
+### Steps to Run the Project
+1. Clone the repository:
+   ```bash
    git clone https://github.com/Sanskar-Rijal/Student_App.git
    cd Student_App
    ```
 
-2. **Open in Android Studio**  
-   - Open Android Studio  
-   - Select "Open an Existing Project"  
-   - Navigate to the project directory and open it  
+2. Open the project in Android Studio:
+   - Select **File > Open** and navigate to the cloned project directory.
 
-3. **Build & Run**  
-   - Connect a physical device or use an emulator  
-   - Click on "Run" ▶ to launch the app  
+3. Build and Run:
+   - Connect your device or start an emulator.
+   - Click the **Run** button to build and launch the application.
 
 ---
 
-## 📜 **License**  
-This project is for educational purposes and is open for improvements and contributions.  
+## License
+
+This project is intended for educational purposes and is open to further contributions and improvements.
 
 ---
 
-### ✨ **Contributions**  
-Contributions are welcome! Feel free to fork the repo, submit pull requests, or suggest improvements.  
+## Contribution
+
+Contributions are welcome. You can fork the repository, create a feature branch, and submit a pull request. Suggestions and issues can also be raised via GitHub.
 
 ---
 
-This **Student App** is part of the **Comprehensive Application for IOE Purwanchal Campus**, developed as a **Minor Project** to enhance academic interactions between students and teachers. 🚀
+## About the Project
+
+This application is part of the **Comprehensive Application for the Institute of Engineering, Purwanchal Campus (IOEPC)**. It was developed as a **Minor Project** to enhance academic interaction and digital accessibility for students.
+
+---
